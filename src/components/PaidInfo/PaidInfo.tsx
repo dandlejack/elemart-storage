@@ -7,6 +7,7 @@ import { removeDuplicate } from '../../utils/removeDuplicate'
 import { EditableTable } from '../EditTable/EditableTable'
 import {useAuth} from '../Auth/auth-context'
 import './style.css'
+import { generateExcel } from '../Excel/ExcelComponent'
 interface PaidProps {
     createdDate: Date
     customer_name: string
@@ -129,6 +130,17 @@ export const PaidInfo: React.FC<{ match: any }> = ({ match }) => {
             <div className='switch-style'>
                 <Switch checkedChildren={'ยกเลิก'} unCheckedChildren={'แก้ไข'} onChange={(e)=>setEditable(e)} />
             </div>
+            <div>
+                <Button
+                    type='primary'
+                    style={{backgroundColor:'#2ec500',borderRadius:'5px',marginBottom:15}}
+                    onClick={e =>
+                        generateExcel(paidColumn, dataSource.invoice_id,dataSource.data_table)
+                    }
+                >
+                Generate Excel
+                </Button>
+            </div>    
             <Card>
                 <Descriptions title={`${dataSource.invoice_id}`} layout="vertical" bordered>
                     <Descriptions.Item label='วันที่'>{dataSource.invoice_date}</Descriptions.Item>
