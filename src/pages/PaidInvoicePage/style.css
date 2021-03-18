@@ -1,0 +1,20 @@
+.header {
+    padding: 0px 0px;
+    height: 58px;
+}
+.header-main {
+    text-align: right;
+}
+.header-main > button >span {
+    color:#F6C745
+}
+.header-main > button >span:hover {
+    color:#fff
+}
+.paid-form {
+    margin-bottom: 15px;
+}
+.input-width {
+    width: 300px;
+    margin-top: 5px;
+}

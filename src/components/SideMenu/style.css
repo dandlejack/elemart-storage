@@ -1,0 +1,23 @@
+.outside-menu {
+    background-color:#001529;
+    color:#F6C745;
+    height: 90vh;
+    border-right: 0px;
+}
+
+.ant-menu-item:active, .ant-menu-submenu-title:active {
+    color:#000 !important;
+    background: #F6C745 !important;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    color:#000 !important;
+    background: #F6C745 !important;
+    border-right: 0px;
+}
+.ant-menu-inline .ant-menu-item::after{
+    border-right: 0px;
+}
+
+.ant-menu-item:hover{
+    color:#fff
+}
