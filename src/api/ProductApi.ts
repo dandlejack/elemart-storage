@@ -20,7 +20,6 @@ export class ProductApi {
           const result = await axios.get(this.PRODUCT_API_URL+'/findall',{
             params,
           });
-          console.log(result.data)
           return result.data;
         } catch {
           alert('Cannot fetch data');

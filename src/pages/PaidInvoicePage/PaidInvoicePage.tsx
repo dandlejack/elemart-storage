@@ -61,16 +61,13 @@ export const PaidInvoicePage:React.FC = () =>{
         async function fetchPaidInvoice() {
             const response = await PaidApi.getPaidInvoice(50)
             const localCustomerData = localStorage.getItem('customer')
-            console.log(response)
             if(localCustomerData !== null){
                 const customerData = JSON.parse(localCustomerData)
                 response.data.map((data:any)=>{
                     const findData = customerData.find((cusData:any)=> cusData._id === data.customer_name)
-                    console.log(customerData)
                     data.customer_name = findData.customer_name
                     return findData
                 })
-                console.log(response.data)
                 setDataSource(response.data)
             }
         }

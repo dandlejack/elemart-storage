@@ -18,7 +18,6 @@ export const LoginPage: React.FC = () => {
         username: values.username,
         password: values.password,
       });
-      console.log(res)
       if(res === 'username or password wrong') setMsg(res);
     } catch {
       console.log('Login Error');

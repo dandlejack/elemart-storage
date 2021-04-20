@@ -6,7 +6,7 @@ import { ProductApi } from '../../api/ProductApi'
 import { CustomModal } from '../../components/CustomModal/CustomModal'
 import { ProductForm } from '../../components/ProductForm/ProductForm'
 import { productMocks } from '../../mocks/ProductMocks'
-
+import {addFilter} from '../../components/FilterTables/FilterTables'
 const {Header} = Layout
 
 const column = [
@@ -15,12 +15,14 @@ const column = [
         dataIndex:'product_id',
         dataType:'string',
         key:'product_id',
+        ...addFilter('product_id')
     },
     {
         title:'ชื่อสินค้า',
         dataIndex:'product_name',
         dataType:'string',
         key:'product_name',
+        ...addFilter('product_name')
     },
     {
         title:'Operation',
@@ -58,45 +60,41 @@ export const ProductPage:React.FC = () => {
         }
     }, [])
 
-    useEffect(() => {
-        const fetchProduct = async() => {
-            const res = await ProductApi.getAllProduct({
-                limitPage:dataSource.pageSize,
-                pageNumber:dataSource.pageNumber
-            })
-            setDataSource(res)
-        }
-        fetchProduct()
-        return () => {
-            console.log('unmount')
-        }
-    }, [dataSource.pageNumber])
+    // useEffect(() => {
+    //     const fetchProduct = async() => {
+    //         const res = await ProductApi.getAllProduct({
+    //             limitPage:dataSource.pageSize,
+    //             pageNumber:dataSource.pageNumber
+    //         })
+    //         setDataSource(res)
+    //     }
+    //     fetchProduct()
+    //     return () => {
+    //         console.log('unmount')
+    //     }
+    // }, [dataSource.pageNumber])
 
-    useEffect(() => {        
-        const fetchProduct = async() => {
-            const res = await ProductApi.getAllProduct({
-                limitPage:dataSource.pageSize,
-                pageNumber:dataSource.pageNumber
-            })
-            setDataSource(res)
-        }
-        if(dataSource.pageSize !== undefined){
-            fetchProduct()            
-        }
-        return () => {
-            console.log('unmount')
-        }
-    }, [dataSource.pageSize])
+    // useEffect(() => {        
+    //     const fetchProduct = async() => {
+    //         const res = await ProductApi.getAllProduct({
+    //             limitPage:dataSource.pageSize,
+    //             pageNumber:dataSource.pageNumber
+    //         })
+    //         setDataSource(res)
+    //     }
+    //     if(dataSource.pageSize !== undefined){
+    //         fetchProduct()            
+    //     }
+    //     return () => {
+    //         console.log('unmount')
+    //     }
+    // }, [dataSource.pageSize])
 
     const handleClose = () =>{
         setModalVisible(false)
     }
     return <div key='invoice-page' className={'invoice-page'}>
     <div style={{ marginTop: 15 }}>
-        <div style={{ display: 'inline-flex', marginLeft: 15, alignItems: 'center' }}>
-            <label>ค้นหา</label>
-            <Input />
-        </div>
         <div style={{ display: 'inline-block', float: 'right', marginRight: 15 }}>
             <Button type='primary' onClick={e => setModalVisible(true)}><PlusOutlined twoToneColor="#eb2f96" /></Button>
         </div>

@@ -36,7 +36,6 @@ export class CustomerApi {
     const result = await axios.get(this.CUSTOMER_API_URL + '/' + id).then(res => {
       return res
     })
-    console.log(result.data)
     return result.data
   }
 }

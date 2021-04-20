@@ -22,7 +22,6 @@ export class UserApi {
             const result = await axios.post(`${BACKEND_API}/auth/login`,data).then(res=>{
                 return res.data
             })
-            console.log(result)
             return result
         } catch {
             

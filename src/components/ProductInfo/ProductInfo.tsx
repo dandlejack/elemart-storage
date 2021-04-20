@@ -22,10 +22,8 @@ export const ProductInfo: React.FC<{ match: any }> = ({ match }) => {
     const [productID, setProductID] = useState('')
     useEffect(() => {
         const { id } = match.params;
-        console.log(id)
         const getProductFromId = async (id: string) => {
             const res = await ProductApi.getProductById(id)
-            console.log(res)
             setProductData(res[0])
         }
         getProductFromId(id)
@@ -66,8 +64,6 @@ export const ProductInfo: React.FC<{ match: any }> = ({ match }) => {
                     await productData.history_table.map(async (id: string, index: number) => {
                         const re = await fetchPaid(id, index)
                         const re2 = await fetchReceived(id, index)
-                        console.log(re2)
-                        console.log(re)
                         if (re2 !== undefined && re !== undefined) {
                             setStoreFetchData(re2)
                         }
@@ -84,7 +80,6 @@ export const ProductInfo: React.FC<{ match: any }> = ({ match }) => {
 
     useEffect(() => {
         const store: any[] = []
-        console.log(storeFetchData)
 
         storeFetchData.map((data: any) => {
             const storeObj: any = {}

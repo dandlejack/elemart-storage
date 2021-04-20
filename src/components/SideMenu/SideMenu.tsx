@@ -3,21 +3,20 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Page } from '../../types/Page';
 import { Pages } from '../../Pages';
 import { Menu,Typography } from 'antd';
-import { Content, Header } from 'antd/lib/layout/layout';
+import { Header } from 'antd/lib/layout/layout';
 import './style.css'
-const {Divider } = Menu
+import { useAuth } from '../Auth/auth-context';
 const {Title} = Typography
 type SideMenuProps = RouteComponentProps<{}>;
 
 const SideMenu = ({ history }: SideMenuProps) => {
   const [activePage, setActivePage] = useState(Pages[0].title);
-
+  const {myAccount} = useAuth()
+  const cpMyAccout = JSON.parse(JSON.stringify(myAccount))
   const navigateToPage = (e:any,page: any) => {
     history.push(page.path);
     setActivePage(page.title);
-  };
-
-  
+  };  
   return (
     <>
     <Header className='header'>
@@ -33,7 +32,7 @@ const SideMenu = ({ history }: SideMenuProps) => {
       defaultSelectedKeys={[activePage]}
       className='outside-menu'
       mode="inline">
-      {Pages.map((page: Page, index: number) => {
+      {cpMyAccout.login && Pages.map((page: Page, index: number) => {
         if(!page.show) return <></>
         return (
           <Menu.Item

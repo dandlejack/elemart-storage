@@ -48,7 +48,6 @@ export const CustomerInfo: React.FC<{ match: any }> = ({ match }) => {
                     Object.assign(dataTable, {_id:ivData._id, invoice_date: ivData.invoice_date, invoice_id: ivData.invoice_id, invoice_type: 'รับ', key: count })
                     storeData.push(dataTable)
                     count++
-                    console.log(dataTable)
                 })
             })
 
@@ -57,7 +56,6 @@ export const CustomerInfo: React.FC<{ match: any }> = ({ match }) => {
                     Object.assign(dataTable, {_id:ivData._id, invoice_date: ivData.invoice_date, invoice_id: ivData.invoice_id, invoice_type: 'ขาย', key: count })
                     storeData.push(dataTable)
                     count++
-                    console.log(dataTable)
                 })
             })
             
@@ -83,7 +81,6 @@ export const CustomerInfo: React.FC<{ match: any }> = ({ match }) => {
         }
         fetchProduct()
         return () => {
-            console.log('unmount')
         }
     }, [editable])
 

@@ -13,7 +13,7 @@ import Cookie from 'js-cookie';
 import { LogoutComponent } from './components/LogoutComponent/LogoutComponent'
 export const Pages: Page[] = [
     {
-        title: 'หน้าแรก',
+        title: 'สินค้า',
         component: ProductPage,
         path: '/',
         show: true,

@@ -21,13 +21,11 @@ export const ProductForm:React.FC = props => {
             createdBy : cpUser.myAccount.me._id ,
             history_table:[],
         }
-        console.log(allData)
-        // ProductApi.insertProduct(allData).then(res=>{
-        //     window.location.reload()
-        // })
+        ProductApi.insertProduct(allData).then(res=>{
+            window.location.reload()
+        })
         
     }
-    console.log(au.myAccount)
 
     return (
         <div className='paid-content'>

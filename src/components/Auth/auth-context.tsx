@@ -60,8 +60,6 @@ export const AuthProvider = ({ children }:any) => {
             })
             return result.user
         }
-        // Cookie.set('profile',JSON.stringify({username:'test',role:'1234'}))
-        // setUserData('Test')
     }
     const signOut = () => {            
         Cookie.remove('profile')

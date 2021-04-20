@@ -31,7 +31,6 @@ export const PaidInfo: React.FC<{ match: any }> = ({ match }) => {
             const res = await PaidApi.getPaidInvoiceById(id)
             if(localCustomerData !== null){
                 const findCustomer = JSON.parse(localCustomerData).find((cusData:any)=>cusData._id === res[0].customer_name)
-                console.log(findCustomer)
                 res[0].customer_name = findCustomer.customer_name
                 setDataSource(res[0])
                 setCurrentUserID(findCustomer._id)
