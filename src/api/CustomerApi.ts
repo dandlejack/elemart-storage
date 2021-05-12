@@ -38,4 +38,9 @@ export class CustomerApi {
     })
     return result.data
   }
+
+  static async deleteCustomerById(id:string){
+    await axios.delete(this.CUSTOMER_API_URL+'/'+id)
+  }
+
 }
