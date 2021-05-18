@@ -9,6 +9,7 @@ import {EditableTable} from '../EditTable/EditableTable'
 interface TableProps {
     column:Array<Object>
 }
+const { TextArea } = Input
 
 export const PaidInvoiceForm:React.FC<TableProps> = props => {
     const [dataTable, setdataTable] = useState([] as Array<Object>)
@@ -16,7 +17,7 @@ export const PaidInvoiceForm:React.FC<TableProps> = props => {
     const [customer, setCustomer] = useState('')
     const [customers, setCustomers] = useState([] as Array<Object>)
     const [dateData, setDateData] = useState('')
-
+    const [paidDescription, setPaidDescription] = useState('')
     useEffect(()=>{
         async function fetchAllCustomer() {
             const response = await CustomerApi.getAllCustomer()
@@ -38,6 +39,7 @@ export const PaidInvoiceForm:React.FC<TableProps> = props => {
             invoice_date:dateData,
             invoice_id:'IV'+invoice,
             customer_name:customer,
+            paid_description: paidDescription,
             data_table:dataTable,
         }
         const id = await PaidApi.insertInvoice(allData).then(res=>{
@@ -79,6 +81,10 @@ export const PaidInvoiceForm:React.FC<TableProps> = props => {
                         })}
                     </Select>
                 </div>
+            </div>
+            <span>รายละเอียด</span>
+            <div>
+                <TextArea onChange={e => setPaidDescription(e.target.value)} />
             </div>
             <div className='paid-form editable-table'>
                 <EditableTable column={props.column} getData={getTableData} oldData={[]} ablePagination={{disabled:false}} startCount={1} />
