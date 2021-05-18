@@ -17,7 +17,7 @@ export const ProductForm: React.FC = props => {
         const cpUser = JSON.parse(JSON.stringify(au))
         const allData = {
             product_name: product,
-            product_id: productId,
+            product_id: productId.trim(),
             current_amount: productAmount,
             createdBy: cpUser.myAccount.me._id,
             history_table: [],
