@@ -9,8 +9,8 @@ import { CustomerForm } from '../../components/CustomerForm/CustomerForm';
 
 const onCancel = (e: any) => { };
 const onConfirm = (id: string) => {
-    // CustomerApi.(id);
-    // window.location.reload();
+    CustomerApi.deleteCustomerById(id);
+    window.location.reload();
 };
 const column = [
     {

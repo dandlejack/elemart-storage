@@ -62,15 +62,18 @@ export const EditableCell: React.FC<EditableCellProps> = ({
     }
   }, [editing]);
 
-  useEffect(() => { 
+  useEffect(() => {
     console.log('Effect is applied')
-      const getProduct = localStorage.getItem('product')
-      if(getProduct !== null)
-        setProduct(JSON.parse(getProduct))
-        return () =>{            
-            console.log('unmount')
-        }
+    const getProduct = localStorage.getItem('product')
+    if (getProduct !== null) {
+      const store = JSON.parse(getProduct)      
+      setProduct(store.data)
+    }
+    return () => {
+      console.log('unmount')
+    }
   }, []);
+  console.log(product)
 
   const toggleEdit = () => {
     setEditing(!editing);
@@ -178,16 +181,16 @@ export const EditableCell: React.FC<EditableCellProps> = ({
               },
             ]}
           >
-            {dataIndex ==='product_name'?(
+            {dataIndex === 'product_name' ? (
               <Select onBlur={save} showSearch>
-                {product.length > 0 && product.map((data:any)=>{
-                  return <Select.Option key={data._id} value={data.product_name}>{data.product_name}</Select.Option>                  
+                {product.length > 0 && product.map((data: any) => {
+                  return <Select.Option key={data._id} value={data.product_name}>{data.product_name}</Select.Option>
                 })}
               </Select>
-            ):null}
+            ) : null}
           </Form.Item>
         );
-      } else if(dataType === 'number'){
+      } else if (dataType === 'number') {
         childNode = (
           <Form.Item style={{ margin: 0 }} name={dataIndex}>
             <InputNumber min={0} ref={inputRef} onPressEnter={save} onBlur={save} />

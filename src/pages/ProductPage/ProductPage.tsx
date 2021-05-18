@@ -75,19 +75,21 @@ export const ProductPage: React.FC = () => {
         }
     }, [])
 
-    // useEffect(() => {
-    //     const fetchProduct = async() => {
-    //         const res = await ProductApi.getAllProduct({
-    //             limitPage:dataSource.pageSize,
-    //             pageNumber:dataSource.pageNumber
-    //         })
-    //         setDataSource(res)
-    //     }
-    //     fetchProduct()
-    //     return () => {
-    //         console.log('unmount')
-    //     }
-    // }, [dataSource.pageNumber])
+    useEffect(() => {
+        const fetchProduct = async() => {
+            const res = await ProductApi.getAllProduct({
+                limitPage:dataSource.pageSize,
+                pageNumber:dataSource.pageNumber
+            })
+            console.log(res)
+            console.log(dataSource)
+            setDataSource(res)
+        }
+        fetchProduct()
+        return () => {
+            console.log('unmount')
+        }
+    }, [dataSource.pageNumber])
 
     // useEffect(() => {        
     //     const fetchProduct = async() => {

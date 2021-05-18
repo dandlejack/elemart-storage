@@ -16,6 +16,7 @@ interface ReceivedProps {
     invoice_date: string
     invoice_id: string
     updateDate: Date
+    received_description?: string
     updatedBy:string
     _id: string
 }
@@ -124,8 +125,9 @@ export const ReceivedInfo: React.FC<{ match: any }> = ({ match }) => {
             </div> 
             <Card>
                 <Descriptions title={`${dataSource.invoice_id}`} layout="vertical" bordered>
-                    <Descriptions.Item label='วันที่'>{dataSource.invoice_date}</Descriptions.Item>
-                    <Descriptions.Item label='ลูกค้า'>{dataSource.seller}</Descriptions.Item>
+                    <Descriptions.Item label='วันที่' span={2}>{dataSource.invoice_date}</Descriptions.Item>
+                    <Descriptions.Item label='ลูกค้า' span={2}>{dataSource.seller}</Descriptions.Item>
+                    <Descriptions.Item span={3} label='รายละเอียด' >{dataSource.received_description}</Descriptions.Item>
                 </Descriptions>
                 <div className='paid-form editable-table'>
                 {editable
