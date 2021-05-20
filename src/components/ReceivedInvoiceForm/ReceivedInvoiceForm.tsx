@@ -1,5 +1,6 @@
 
 import { Button, DatePicker, Input, Select } from 'antd'
+import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { CustomerApi } from '../../api/CustomerApi'
 import { PaidApi } from '../../api/PaidApi'
@@ -38,35 +39,39 @@ export const ReceivedInvoiceForm: React.FC<TableProps> = props => {
 
     const onSave = async () => {
         const getProduct = localStorage.getItem('product')
-        const allData = {
-            invoice_date: dateData,
-            invoice_id: 'AP' + invoice,
-            seller: seller,
-            data_table: dataTable,
-            received_description: receivedDescription
-        }
-        console.log(allData)
-        const id = await ReceivedApi.insertReceivedInvoice(allData).then(res => {
-            return res._id
-        })
-        if (getProduct !== null) {
-            const p = JSON.parse(getProduct)
-            dataTable.map((data: any, index: number) => {
-                const filterData = p.filter((pFilter: any) => pFilter._id === data.raw_id)[0]
-                console.log(filterData)
-                if (filterData !== undefined) {
-                    filterData.current_amount += data.received_amount
-                    filterData.history_table.push(id)
-
-                    ProductApi.updateProductById(data.raw_id, filterData).then(res => {
-                        window.location.reload()
-                    })
-                }else{
-                    alert('กรุณาเลือกสินค้า')
-                }
-
+        const getUserCookie = Cookies.get('profile')
+        if (getUserCookie !== undefined) {
+            const getUser = JSON.parse(getUserCookie)
+            const allData = {
+                invoice_date: dateData,
+                invoice_id: 'AP' + invoice,
+                seller: seller,
+                data_table: dataTable,
+                received_description: receivedDescription,
+                createdBy: getUser.fullname
+            }
+            const id = await ReceivedApi.insertReceivedInvoice(allData).then(res => {
+                return res._id
             })
+            if (getProduct !== null) {
+                const p = JSON.parse(getProduct)
+                dataTable.map((data: any, index: number) => {
+                    const filterData = p.filter((pFilter: any) => pFilter._id === data.raw_id)[0]
+                    if (filterData !== undefined) {
+                        filterData.current_amount += data.received_amount
+                        filterData.history_table.push(id)
+    
+                        ProductApi.updateProductById(data.raw_id, filterData).then(res => {
+                            window.location.reload()
+                        })
+                    } else {
+                        alert('กรุณาเลือกสินค้า')
+                    }
+    
+                })
+            }
         }
+        
 
     }
 

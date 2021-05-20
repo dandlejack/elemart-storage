@@ -64,7 +64,6 @@ export const EditableCell: React.FC<EditableCellProps> = ({
 
   useEffect(() => {
     console.log('Effect is applied')
-    const getProduct = localStorage.getItem('product')
     ProductApi.getAllProductWithoutParams().then(res=>{
       setProduct(res.data)
     })
