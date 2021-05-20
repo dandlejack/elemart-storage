@@ -65,16 +65,13 @@ export const EditableCell: React.FC<EditableCellProps> = ({
   useEffect(() => {
     console.log('Effect is applied')
     const getProduct = localStorage.getItem('product')
-    if (getProduct !== null) {
-      const store = JSON.parse(getProduct)      
-      setProduct(store.data)
-    }
+    ProductApi.getAllProductWithoutParams().then(res=>{
+      setProduct(res.data)
+    })
     return () => {
       console.log('unmount')
     }
   }, []);
-  console.log(product)
-
   const toggleEdit = () => {
     setEditing(!editing);
     if (record[dataIndex] !== '-') {

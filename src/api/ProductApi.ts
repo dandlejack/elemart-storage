@@ -26,6 +26,16 @@ export class ProductApi {
           return [];
         }
     }
+
+    static async getAllProductWithoutParams() {
+      try {
+          const result = await axios.get(this.PRODUCT_API_URL+'/findAllWithoutParams');
+          return result.data;
+        } catch {
+          alert('Cannot fetch data');
+          return [];
+        }
+    }
     
     static async insertProduct(data:object) {
         const result = await axios.post(this.PRODUCT_API_URL,data).then(response => {

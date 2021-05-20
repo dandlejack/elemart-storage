@@ -97,7 +97,6 @@ export const ReceivedInvoiceForm: React.FC<TableProps> = props => {
             <span>รายละเอียด</span>
             <div>
                 <TextArea onChange={e => setReceivedDescription(e.target.value)} />
-
             </div>
             <div className='paid-form editable-table'>
                 <EditableTable column={props.column} getData={getTableData} oldData={[]} ablePagination={{ disabled: false }} startCount={1} />
