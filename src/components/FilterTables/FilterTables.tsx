@@ -2,6 +2,7 @@ import React from 'react';
 import { Input, Button, DatePicker } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import moment from 'moment';
+import { ProductApi } from '../../api/ProductApi';
 
 interface ColumnSearch {
   setSelectedKeys: any;
@@ -19,13 +20,25 @@ const handleReset = (clearFilters: any) => {
   clearFilters();
 };
 
-export const addFilter = (dataIndex: any) => ({
+const queryData = async (data:string,type:string) => {
+  if(type === 'product'){
+    const result = await ProductApi.searchProduct({
+      filterObject:{product_id:{"$in":[`/${data}/`]}}
+    }).then(res=>{
+      return res.data
+    })
+    return result
+  }
+}
+
+export const addFilter = (dataIndex: any, type:string) => ({
     
   filterDropdown: ({
     setSelectedKeys,
     selectedKeys,
     confirm,
     clearFilters,
+    testText
   }: ColumnSearch) => (
     <div style={{ padding: 8 }}>
       <Input
@@ -57,8 +70,12 @@ export const addFilter = (dataIndex: any) => ({
     <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
   ),
   onFilter: (value: any, record: any) => {
+    console.log(dataIndex,type)
     if (record[dataIndex] !== undefined) {
-      return record[dataIndex]
+      // return queryData(value,type)
+      const data = queryData(value,type)
+      console.log(data)
+    return record[dataIndex]
         .toString()
         .toLowerCase()
         .includes(value.toLowerCase());
