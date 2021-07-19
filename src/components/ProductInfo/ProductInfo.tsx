@@ -62,8 +62,8 @@ export const ProductInfo: React.FC<{ match: any }> = ({ match }) => {
                 const ts = async () => {
                     const t: any[] = []
                     await productData.history_table.map(async (id: string, index: number) => {
-                        const re = await fetchPaid(id, index)
                         const re2 = await fetchReceived(id, index)
+                        const re = await fetchPaid(id, index)
                         if (re2 !== undefined && re !== undefined) {
                             setStoreFetchData(re2)
                         }

@@ -185,7 +185,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
               </Select>
             ) : <Select onBlur={save} showSearch>
                 {product.length > 0 && product.map((data: any) => {
-                  return <Select.Option key={data.product_id} value={data.product_id}>{data.product_id}</Select.Option>
+                  return <Select.Option key={data.product_id} value={data.product_id}>{data.product_id} | <span style={{color:'red'}}>{data.product_name}</span></Select.Option>
                 })}
               </Select>}
           </Form.Item>
