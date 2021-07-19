@@ -5,6 +5,7 @@ import {
     EditableRow,
 } from './EditableCell';
 import { TablePaginationConfig } from 'antd/lib/table';
+import { ProductApi } from '../../api/ProductApi';
 
 interface TableProps {
     column: Array<Object>;
@@ -45,21 +46,30 @@ export const EditableTable: React.FC<TableProps> = props => {
         setCount(count - 1)
     };
 
-    const handleSave = (row: any) => {
+    const handleSave = async (row: any) => {
         const getAllProduct = localStorage.getItem('product')
         if (getAllProduct !== null) {
-            const allProductData = JSON.parse(getAllProduct)
-            if (row.product_name !== '-') {
-                if (allProductData.data) {
-                    const filterData = allProductData.data.filter((data: any) => data.product_name === row.product_name)[0]
-                    row.raw_id = filterData._id
-                    row.product_id = filterData.product_id
-                } else {
-                    const filterData = allProductData.filter((data: any) => data.product_name === row.product_name)[0]
-                    row.raw_id = filterData._id
-                    row.product_id = filterData.product_id
-                }
+            // if (row.product_name !== '-') {
+            //     if (allProductData.data) {
+            //         const filterData = allProductData.data.filter((data: any) => data.product_name === row.product_name)[0]
+            //         row.raw_id = filterData._id
+            //         row.product_id = filterData.product_id
+            //     } else {
+            //         const filterData = allProductData.filter((data: any) => data.product_name === row.product_name)[0]
+            //         row.raw_id = filterData._id
+            //         row.product_id = filterData.product_id
+            //     }
 
+            // }
+            if (row.product_id !== '-') {
+                console.log(row)
+                const result =  await ProductApi.getAllProduct({filterObject:{
+                    product_id:row.product_id
+                }}).then(res => {
+                    return res.data[0]
+                })
+                row.raw_id = result._id
+                row.product_name = result.product_name
             }
         }
         if (row.received_amount) row.total_price = row.received_amount * row.product_price

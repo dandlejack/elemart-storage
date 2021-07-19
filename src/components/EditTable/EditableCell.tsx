@@ -64,7 +64,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
 
   useEffect(() => {
     console.log('Effect is applied')
-    ProductApi.getAllProductWithoutParams().then(res=>{
+    ProductApi.getAllProductWithoutParams().then(res => {
       setProduct(res.data)
     })
     return () => {
@@ -183,7 +183,11 @@ export const EditableCell: React.FC<EditableCellProps> = ({
                   return <Select.Option key={data._id} value={data.product_name}>{data.product_name}</Select.Option>
                 })}
               </Select>
-            ) : null}
+            ) : <Select onBlur={save} showSearch>
+                {product.length > 0 && product.map((data: any) => {
+                  return <Select.Option key={data.product_id} value={data.product_id}>{data.product_id}</Select.Option>
+                })}
+              </Select>}
           </Form.Item>
         );
       } else if (dataType === 'number') {

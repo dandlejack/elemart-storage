@@ -3,7 +3,9 @@ export const paidColumn = [
         title: 'รหัสสินค้า',
         dataIndex: 'product_id',
         key: 'product_id',
+        dataType: 'select',
         width:140,
+        editable: true
     },
     {
         title: 'ชื่อสินค้า',
@@ -11,7 +13,6 @@ export const paidColumn = [
         dataType: 'select',
         key: 'product_name',
         width:250,
-        editable: true
     },
     {
         title: 'จำนวน',
@@ -51,7 +52,9 @@ export const receivedColumn = [
         title: 'รหัสสินค้า',
         dataIndex: 'product_id',
         key: 'product_id',
+        dataType: 'select',
         width:140,
+        editable: true
     },
     {
         title: 'ชื่อสินค้า',
@@ -59,7 +62,7 @@ export const receivedColumn = [
         dataType: 'select',
         key: 'product_name',
         width:250,
-        editable: true
+        // editable: true
     },
     {
         title: 'จำนวน',
