@@ -108,17 +108,14 @@ export const PaidInfo: React.FC<{ match: any }> = ({ match }) => {
     const summaryData = (pageData: any) => {
         let summary = 0;
           pageData.forEach((data: any) => {
-            summary += Number.parseFloat(data.total_price);
+            summary += Number.parseFloat(data.paid_amount);
           });
           return (
             <>
               <Table.Summary.Row>
                 <Table.Summary.Cell index={0}></Table.Summary.Cell>
                 <Table.Summary.Cell index={1}>Total</Table.Summary.Cell>
-                <Table.Summary.Cell index={2}>-</Table.Summary.Cell>
-                <Table.Summary.Cell index={3}>-</Table.Summary.Cell>
-                <Table.Summary.Cell index={4}>{summary}</Table.Summary.Cell>
-                <Table.Summary.Cell index={5}></Table.Summary.Cell>
+                <Table.Summary.Cell index={2}>{summary}</Table.Summary.Cell>
               </Table.Summary.Row>
             </>
           );        

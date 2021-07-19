@@ -91,9 +91,11 @@ export const ProductInfo: React.FC<{ match: any }> = ({ match }) => {
             data.data_table.map((inTable: any) => {
                 if (productID === inTable.raw_id) {
                     if (inTable.received_amount !== undefined) {
-                        Object.assign(storeObj, { product_price: inTable.product_price, received_amount: inTable.received_amount, paid_amount: 0, total_price: inTable.total_price })
+                        // Object.assign(storeObj, { product_price: inTable.product_price, received_amount: inTable.received_amount, paid_amount: 0, total_price: inTable.total_price })
+                        Object.assign(storeObj, { product_price: 0, received_amount: inTable.received_amount, paid_amount: 0, total_price: 0 })
                     } else {
-                        Object.assign(storeObj, { product_price: inTable.product_price, received_amount: 0, paid_amount: inTable.paid_amount, total_price: inTable.total_price })
+                        // Object.assign(storeObj, { product_price: inTable.product_price, received_amount: 0, paid_amount: inTable.paid_amount, total_price: inTable.total_price })
+                        Object.assign(storeObj, { product_price: 0, received_amount: 0, paid_amount: inTable.paid_amount, total_price: 0 })
                     }
                 }
 

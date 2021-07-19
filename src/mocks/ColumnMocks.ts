@@ -4,7 +4,7 @@ export const paidColumn = [
         dataIndex: 'product_id',
         key: 'product_id',
         dataType: 'select',
-        width:140,
+        width:250,
         editable: true
     },
     {
@@ -19,24 +19,24 @@ export const paidColumn = [
         dataIndex: 'paid_amount',
         dataType: 'number',
         key: 'paid_amount',
-        width:140,
+        width:100,
         editable: true
     },
-    {
-        title: 'ราคา',
-        dataIndex: 'product_price',
-        dataType: 'number',
-        key: 'product_price',
-        width:140,
-        editable: true
-    },
-    {
-        title: 'จำนวนเงิน',
-        dataIndex: 'total_price',
-        dataType: 'number',
-        key: 'total_price',
-        width:140,
-    },
+    // {
+    //     title: 'ราคา',
+    //     dataIndex: 'product_price',
+    //     dataType: 'number',
+    //     key: 'product_price',
+    //     width:140,
+    //     editable: true
+    // },
+    // {
+    //     title: 'จำนวนเงิน',
+    //     dataIndex: 'total_price',
+    //     dataType: 'number',
+    //     key: 'total_price',
+    //     width:140,
+    // },
     {
         title: 'Operation',
         dataIndex: 'operation',
@@ -53,7 +53,7 @@ export const receivedColumn = [
         dataIndex: 'product_id',
         key: 'product_id',
         dataType: 'select',
-        width:140,
+        width:250,
         editable: true
     },
     {
@@ -69,24 +69,24 @@ export const receivedColumn = [
         dataIndex: 'received_amount',
         dataType: 'number',
         key: 'received_amount',
-        width:140,
+        width:100,
         editable: true
     },
-    {
-        title: 'ราคา',
-        dataIndex: 'product_price',
-        dataType: 'number',
-        key: 'product_price',
-        width:140,
-        editable: true
-    },
-    {
-        title: 'จำนวนเงิน',
-        dataIndex: 'total_price',
-        dataType: 'number',
-        key: 'total_price',
-        width:140,
-    },
+    // {
+    //     title: 'ราคา',
+    //     dataIndex: 'product_price',
+    //     dataType: 'number',
+    //     key: 'product_price',
+    //     width:100,
+    //     editable: true
+    // },
+    // {
+    //     title: 'จำนวนเงิน',
+    //     dataIndex: 'total_price',
+    //     dataType: 'number',
+    //     key: 'total_price',
+    //     width:140,
+    // },
     {
         title: 'Operation',
         dataIndex: 'operation',
